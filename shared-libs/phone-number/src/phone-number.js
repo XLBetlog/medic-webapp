@@ -50,8 +50,9 @@ var _init = function(settings, phone) {
 exports.normalize = function(settings, phone) {
   try {
     return _init(settings, phone).format(phonenumber.PhoneNumberFormat.E164);
-  } catch (e) {}
-  return false;
+  } catch (e) {
+    return false;
+  }
 };
 
 /**
@@ -60,8 +61,9 @@ exports.normalize = function(settings, phone) {
 exports.format = function(settings, phone) {
   try {
     return _init(settings, phone).format();
-  } catch (e) {}
-  return false;
+  } catch (e) {
+    return false;
+  }
 };
 
 /**
@@ -71,8 +73,9 @@ exports.format = function(settings, phone) {
 exports.validate = function(settings, phone) {
   try {
     return _init(settings, phone).validate();
-  } catch (e) {}
-  return false;
+  } catch (e) {
+    return false;
+  }
 };
 
 /**
@@ -83,6 +86,7 @@ exports.same = function(a, b) {
     var match = phonenumber.PhoneNumberUtil.getInstance().isNumberMatch(a, b);
     return match === phonenumber.PhoneNumberUtil.MatchType.NSN_MATCH ||
            match === phonenumber.PhoneNumberUtil.MatchType.EXACT_MATCH;
-  } catch (e) {}
-  return false;
+  } catch (e) {
+    return false;
+  }
 };

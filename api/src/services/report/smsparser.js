@@ -187,11 +187,10 @@ exports.parseField = (field, raw) => {
       if (raw === undefined) {
         return;
       }
-      const val = parseNum(raw);
-      if (val === 1) {
+      if (parseNum(raw) === 1) {
         return true;
       }
-      if (val === 0) {
+      if (parseNum(raw) === 0) {
         return false;
       }
       // if we can't parse a number then return null

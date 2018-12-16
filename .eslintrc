@@ -1,0 +1,79 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jasmine": true,
+    "jquery": true,
+    "mocha": true,
+    "node": true
+  },
+  "extends": "eslint:recommended",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "globals": {
+    "angular": true,
+    "Tour": true,
+    "unescape": true
+  },
+  "rules": {
+    "eqeqeq": "error",
+    "no-buffer-constructor": "error",
+    "no-caller": "error",
+    "no-console": "off",
+    "no-extra-boolean-cast": "off",
+    "no-undef": "error",
+    "no-unused-vars": ["error", { "args": "none" }],
+    "no-useless-escape": "off",
+    "semi": ["error", "always"],
+    "quotes": ["error", "single", { "allowTemplateLiterals": true }]
+  },
+  "overrides": [
+    {
+      "files": ["api/**/*.js", "sentinel/**/*.js"],
+      "rules": {
+        "no-console": "error"
+      },
+      "globals": {
+        "emit": true
+      }
+    },
+    {
+      "files": ["ddocs/**/*.js"],
+      "rules": {
+        "no-inner-declarations": "off"
+      }
+    },
+    {
+      "files": ["**/tests/**", "**/test/**"],
+      "globals": {
+        "_": true,
+        "after": true,
+        "afterAll": true,
+        "afterEach": true,
+        "before": true,
+        "beforeAll": true,
+        "beforeEach": true,
+        "browser": true,
+        "by": true,
+        "chai": true,
+        "describe": true,
+        "element": true,
+        "emit": true,
+        "expect": true,
+        "inject": true,
+        "it": true,
+        "KarmaUtils": true,
+        "moment": true,
+        "Promise": true,
+        "protractor": true,
+        "Q": true,
+        "sinon": true
+      },
+      "rules": {
+        "no-global-assign": "off"
+      }
+    }
+  ]
+}

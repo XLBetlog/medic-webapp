@@ -2,8 +2,7 @@ describe('UpdateUser service', function() {
 
   'use strict';
 
-  var scope,
-      service,
+  var service,
       $http;
 
   beforeEach(function() {
@@ -14,7 +13,6 @@ describe('UpdateUser service', function() {
       $provide.value('$http', $http);
     });
     inject(function($injector) {
-      scope = $injector.get('$rootScope');
       service = $injector.get('UpdateUser');
     });
   });
@@ -59,8 +57,7 @@ describe('CreateUser service', function() {
 
   'use strict';
 
-  var scope,
-      service,
+  var service,
       $http;
 
   beforeEach(function() {
@@ -72,7 +69,6 @@ describe('CreateUser service', function() {
       $provide.value('$Q', Q);
     });
     inject(function($injector) {
-      scope = $injector.get('$rootScope');
       service = $injector.get('CreateUser');
     });
   });
@@ -101,8 +97,7 @@ describe('DeleteUser service', function() {
 
   'use strict';
 
-  var scope,
-      service,
+  var service,
       $http;
 
   beforeEach(function() {
@@ -114,7 +109,6 @@ describe('DeleteUser service', function() {
       $provide.value('$Q', Q);
     });
     inject(function($injector) {
-      scope = $injector.get('$rootScope');
       service = $injector.get('DeleteUser');
     });
   });

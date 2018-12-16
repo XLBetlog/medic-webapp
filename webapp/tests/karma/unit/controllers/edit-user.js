@@ -4,7 +4,6 @@ describe('EditUserCtrl controller', () => {
 
   let jQuery,
       mockEditCurrentUser,
-      mockEditAUser,
       scope,
       translationsDbQuery,
       UpdateUser,
@@ -88,12 +87,6 @@ describe('EditUserCtrl controller', () => {
         UserSettings.returns(Promise.resolve(user));
         createController();
       };
-
-      mockEditAUser = user => {
-        // Don't mock UserSettings, we're not fetching current user.
-        createController(user);
-      };
-
     });
   });
 

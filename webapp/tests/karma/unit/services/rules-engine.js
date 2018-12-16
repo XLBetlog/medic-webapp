@@ -11,95 +11,95 @@ describe('RulesEngine service', function() {
 
   /* jshint quotmark: false */
   var rules =
-    "define Contact {" +
-    "  contact: null," +
-    "  reports: null" +
-    "}" +
-    "" +
-    "define Task {" +
-    "  _id: null," +
-    "  doc: null," +
-    "  contact: null," +
-    "  type: null," +
-    "  date: null," +
-    "  title: null," +
-    "  fields: null," +
-    "  reports: null," + // exposed for testing only
-    "  resolved: null" +
-    "}" +
-    "" +
-    "rule GenerateEvents {" +
-    "  when {" +
-    "    c: Contact" +
-    "  }" +
-    "  then {" +
-    "    var visitCount = 0;" +
-    "    if (!c.reports.length) {" +
-    "      emit('task', new Task({" +
-    "        _id: 'no-reports'," +
-    "        doc: null," +
-    "        contact: c.contact," +
-    "        type: 'no-report'," +
-    "        date: new Date()," +
-    "        title: 'No Report'," +
-    "        fields: []," +
-    "        reports: []," +
-    "        resolved: false" +
-    "      }))" +
-    "    }" +
-    "    c.reports.forEach(function(r) {" +
-    "      if (r.form === 'V') {" +
-    "        visitCount++;" +
-    "      }" +
-    "    });" +
-    "    c.reports.forEach(function(r) {" +
-    "      if (r.form === 'P' || r.form === 'R') {" +
-    "        Utils.getSchedule('anc-registration').events.forEach(function(s) {" +
-    "          var visit = new Task({" +
-    "            _id: r._id + '-' + s.id," +
-    "            doc: r," +
-    "            contact: c.contact," +
-    "            type: s.type," +
-    "            date: Utils.addDate(Utils.getLmpDate(r), s.days).toISOString()," +
-    "            title: s.title," +
-    "            fields: [" +
-    "              {" +
-    "                label: [{ content: 'Description', locale: 'en' }]," +
-    "                value: s.description" +
-    "              }" +
-    "            ]," +
-    "            reports: c.reports," +
-    "            resolved: visitCount > 0" +
-    "          });" +
-    "          emit('task', visit);" +
-    "          assert(visit);" +
-    "          visitCount--;" +
-    "        });" +
-    "      } else if (r.form === 'V') {" +
-    "        Utils.getSchedule('anc-follow-up').events.forEach(function(s) {" +
-    "          var visit = new Task({" +
-    "            _id: r._id + '-' + s.id," +
-    "            doc: r," +
-    "            contact: c.contact," +
-    "            type: s.type," +
-    "            date: Utils.addDate(Utils.getLmpDate(r), s.days).toISOString()," +
-    "            title: s.title," +
-    "            fields: [" +
-    "              {" +
-    "                label: [{ content: 'Description', locale: 'en' }]," +
-    "                value: s.description" +
-    "              }" +
-    "            ]," +
-    "            reports: c.reports," +
-    "            resolved: visitCount > 0" +
-    "          });" +
-    "          emit('task', visit);" +
-    "          assert(visit);" +
-    "        });" +
-    "      }" +
-    "    });" +
-    "  }" +
-    "}";
+    'define Contact {' +
+    '  contact: null,' +
+    '  reports: null' +
+    '}' +
+    '' +
+    'define Task {' +
+    '  _id: null,' +
+    '  doc: null,' +
+    '  contact: null,' +
+    '  type: null,' +
+    '  date: null,' +
+    '  title: null,' +
+    '  fields: null,' +
+    '  reports: null,' + // exposed for testing only
+    '  resolved: null' +
+    '}' +
+    '' +
+    'rule GenerateEvents {' +
+    '  when {' +
+    '    c: Contact' +
+    '  }' +
+    '  then {' +
+    '    var visitCount = 0;' +
+    '    if (!c.reports.length) {' +
+    '      emit(\'task\', new Task({' +
+    '        _id: \'no-reports\',' +
+    '        doc: null,' +
+    '        contact: c.contact,' +
+    '        type: \'no-report\',' +
+    '        date: new Date(),' +
+    '        title: \'No Report\',' +
+    '        fields: [],' +
+    '        reports: [],' +
+    '        resolved: false' +
+    '      }))' +
+    '    }' +
+    '    c.reports.forEach(function(r) {' +
+    '      if (r.form === \'V\') {' +
+    '        visitCount++;' +
+    '      }' +
+    '    });' +
+    '    c.reports.forEach(function(r) {' +
+    '      if (r.form === \'P\' || r.form === \'R\') {' +
+    '        Utils.getSchedule(\'anc-registration\').events.forEach(function(s) {' +
+    '          var visit = new Task({' +
+    '            _id: r._id + \'-\' + s.id,' +
+    '            doc: r,' +
+    '            contact: c.contact,' +
+    '            type: s.type,' +
+    '            date: Utils.addDate(Utils.getLmpDate(r), s.days).toISOString(),' +
+    '            title: s.title,' +
+    '            fields: [' +
+    '              {' +
+    '                label: [{ content: \'Description\', locale: \'en\' }],' +
+    '                value: s.description' +
+    '              }' +
+    '            ],' +
+    '            reports: c.reports,' +
+    '            resolved: visitCount > 0' +
+    '          });' +
+    '          emit(\'task\', visit);' +
+    '          assert(visit);' +
+    '          visitCount--;' +
+    '        });' +
+    '      } else if (r.form === \'V\') {' +
+    '        Utils.getSchedule(\'anc-follow-up\').events.forEach(function(s) {' +
+    '          var visit = new Task({' +
+    '            _id: r._id + \'-\' + s.id,' +
+    '            doc: r,' +
+    '            contact: c.contact,' +
+    '            type: s.type,' +
+    '            date: Utils.addDate(Utils.getLmpDate(r), s.days).toISOString(),' +
+    '            title: s.title,' +
+    '            fields: [' +
+    '              {' +
+    '                label: [{ content: \'Description\', locale: \'en\' }],' +
+    '                value: s.description' +
+    '              }' +
+    '            ],' +
+    '            reports: c.reports,' +
+    '            resolved: visitCount > 0' +
+    '          });' +
+    '          emit(\'task\', visit);' +
+    '          assert(visit);' +
+    '        });' +
+    '      }' +
+    '    });' +
+    '  }' +
+    '}';
   /* jshint quotmark: true */
 
   var dataRecords = [

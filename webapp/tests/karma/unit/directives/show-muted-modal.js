@@ -4,7 +4,6 @@ describe('showMutedModal directive', () => {
 
   let compile,
       scope,
-      document,
       Modal,
       state;
 

@@ -180,9 +180,8 @@ describe('infodoc', () => {
   });
 
   describe('bulkUpdate', () => {
-    let clock;
-
-    beforeEach(() => clock = sinon.useFakeTimers());
+    
+    beforeEach(() => sinon.useFakeTimers());
     afterEach(() => sinon.restore());
 
     it('should do nothing when docs list is empty', () => {

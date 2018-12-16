@@ -2,12 +2,10 @@ const chai = require('chai'),
       utils = require('../../../src/controllers/utils'),
       sinon = require('sinon');
 
-let clock;
-
 describe('controller utils', () => {
 
   beforeEach(() => {
-    clock = sinon.useFakeTimers();
+    sinon.useFakeTimers();
   });
 
   afterEach(() => {

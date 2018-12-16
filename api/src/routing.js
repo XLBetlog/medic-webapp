@@ -634,7 +634,7 @@ proxyForAuth.on('proxyRes', (proxyRes, req, res) => {
   copyProxyHeaders(proxyRes, res);
 
   if (res.interceptResponse) {
-    let body = new Buffer('');
+    let body = Buffer.from('');
     proxyRes.on('data', data => (body = Buffer.concat([body, data])));
     proxyRes.on('end', () => res.interceptResponse(req, res, body.toString()));
   } else {

@@ -11,9 +11,7 @@ const testDocs = [
   { _id: 'c' }
 ];
 let testRes,
-    testReq,
-    userCtx,
-    next;
+    userCtx;
 
 describe('Bulk Docs Service', function () {
   beforeEach(function() {
@@ -26,9 +24,6 @@ describe('Bulk Docs Service', function () {
     };
 
     userCtx = { name: 'user' };
-    testReq = { userCtx };
-
-    next = sinon.stub();
 
     sinon.stub(authorization, 'getAuthorizationContext').resolves({});
     sinon.stub(authorization, 'getAllowedDocIds').resolves([]);

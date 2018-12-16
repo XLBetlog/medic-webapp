@@ -2,8 +2,7 @@ var moment = require('moment'),
   validation = require('../../src/lib/validation'),
   db = require('../../src/db-nano'),
   sinon = require('sinon'),
-  assert = require('chai').assert,
-  clock;
+  assert = require('chai').assert;
 
 describe('validations', () => {
   afterEach(() => sinon.restore());
@@ -229,7 +228,7 @@ describe('validations', () => {
   });
 
   it('pass uniqueWithin validation on old doc', done => {
-    clock = sinon.useFakeTimers();
+    sinon.useFakeTimers();
     sinon.stub(db.medic, 'view').callsArgWith(3, null, {
       rows: [{ id: 'different' }],
     });
@@ -270,7 +269,7 @@ describe('validations', () => {
   });
 
   it('fail uniqueWithin validation on new doc', done => {
-    clock = sinon.useFakeTimers();
+    sinon.useFakeTimers();
     sinon.stub(db.medic, 'view').callsArgWith(3, null, {
       rows: [{ id: 'different1' }, { id: 'different2' }, { id: 'different3' }],
     });
