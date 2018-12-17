@@ -33,6 +33,7 @@ var handleResponse = function(xmlhttp) {
     setState('loginincorrect');
   } else {
     setState('loginerror');
+    console.error('Error logging in', xmlhttp.response);
   }
 };
 

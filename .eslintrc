@@ -12,13 +12,11 @@
     "ecmaVersion": 6,
     "sourceType": "module"
   },
-  "globals": {
-    "angular": true,
-    "Tour": true,
-    "unescape": true
-  },
   "rules": {
+    "curly": "error",
     "eqeqeq": "error",
+    "guard-for-in": "error",
+    "no-bitwise": "error",
     "no-buffer-constructor": "error",
     "no-caller": "error",
     "no-console": "off",
@@ -30,21 +28,6 @@
     "quotes": ["error", "single", { "allowTemplateLiterals": true }]
   },
   "overrides": [
-    {
-      "files": ["api/**/*.js", "sentinel/**/*.js"],
-      "rules": {
-        "no-console": "error"
-      },
-      "globals": {
-        "emit": true
-      }
-    },
-    {
-      "files": ["ddocs/**/*.js"],
-      "rules": {
-        "no-inner-declarations": "off"
-      }
-    },
     {
       "files": ["**/tests/**", "**/test/**"],
       "globals": {

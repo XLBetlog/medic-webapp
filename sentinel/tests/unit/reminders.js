@@ -48,6 +48,7 @@ describe('reminders', () => {
       reminders.runReminder({}, function(err) {
           assert.equal(err, null);
           assert.equal(sendReminders.callCount, 1);
+          assert.equal(matchReminder.callCount, 1);
           done();
       });
   });
@@ -62,6 +63,7 @@ describe('reminders', () => {
       reminders.runReminder({}, function(err) {
           assert.equal(err, null);
           assert.equal(sendReminders.callCount, 0);
+          assert.equal(matchReminder.callCount, 1);
           done();
       });
   });
@@ -95,6 +97,7 @@ describe('reminders', () => {
           var moment = sendReminders.getCall(0).args[0].moment;
           assert(moment);
           assert.equal(moment.valueOf(), now.valueOf());
+          assert.equal(matchReminder.callCount, 1);
           done();
       });
   });
@@ -255,6 +258,7 @@ describe('reminders', () => {
 
       reminders.sendReminders({}, function() {
           assert.equal(sendReminder.callCount, 2);
+          assert.equal(getClinics.callCount, 1);
           done();
       });
   });
@@ -399,7 +403,8 @@ describe('reminders', () => {
       });
 
       reminders.getReminderWindow({
-          db: db
+          db: db,
+          view: view
       }, function(err, start) {
           assert.equal(err, null);
           assert(start);

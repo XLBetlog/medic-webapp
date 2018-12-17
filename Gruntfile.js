@@ -217,37 +217,13 @@ module.exports = function(grunt) {
         'sentinel/**/*.js',
         'shared-libs/**/*.js',
         'admin/**/*.js',
-        'ddocs/**/*.js',
+        '!ddocs/**/*.js',
         '!webapp/src/js/modules/xpath-element-path.js',
         '!**/node_modules/**',
         '!sentinel/src/lib/pupil/**',
         '!build/**',
         '!config/**'
       ]
-    },
-    jshint: {
-      options: {
-        jshintrc: true,
-        reporter: require('jshint-stylish'),
-        ignores: [
-          'webapp/src/js/modules/xpath-element-path.js',
-          '**/node_modules/**',
-          'sentinel/src/lib/pupil/**',
-          'build/**',
-          'config/**'
-        ],
-      },
-      all: [
-        'Gruntfile.js',
-        'webapp/src/**/*.js',
-        'webapp/tests/**/*.js',
-        'tests/**/*.js',
-        'api/**/*.js',
-        'sentinel/**/*.js',
-        'shared-libs/**/*.js',
-        'admin/**/*.js',
-        'ddocs/**/*.js',
-      ],
     },
     less: {
       webapp: {
@@ -829,45 +805,6 @@ module.exports = function(grunt) {
           pattern: /(\.only\()|(fdescribe\()|(fit\()/g,
         },
       },
-      'console-in-angular': {
-        files: [
-          {
-            src: [
-              'webapp/src/js/**/*.js',
-              'admin/src/js/**/*.js',
-
-              // ignored because they don't have access to angular
-              '!webapp/src/js/app.js',
-              '!webapp/src/js/bootstrapper/*.js',
-
-              // ignored because its job is to log to console
-              '!webapp/src/js/modules/feedback.js',
-            ],
-          },
-        ],
-        options: {
-          pattern: /console\./g,
-        },
-      },
-      'console-in-node': {
-        files: [
-          {
-            src: [
-              'api/**/*.js',
-              'sentinel/**/*.js',
-
-              // ignore because they are sent to the client side/frontend
-              '!api/src/public/**/*.js',
-
-              // ignore build dirs
-              '!**/node_modules/**',
-            ],
-          },
-        ],
-        options: {
-          pattern: /console\./g,
-        },
-      },
     },
     xmlmin: {
       'enketo-xslt': {
@@ -991,7 +928,7 @@ module.exports = function(grunt) {
   grunt.registerTask(
     'unit-continuous',
     'Lint, karma unit tests running on a loop',
-    ['jshint', 'karma:unit-continuous']
+    ['eslint', 'karma:unit-continuous']
   );
 
   grunt.registerTask(
@@ -1005,7 +942,7 @@ module.exports = function(grunt) {
   );
 
   grunt.registerTask('unit', 'Lint and unit tests', [
-    'jshint',
+    'eslint',
     'karma:unit',
     'karma:admin',
     'exec:shared-lib-unit',
@@ -1070,7 +1007,7 @@ module.exports = function(grunt) {
   grunt.registerTask('static-analysis', 'Static analysis checks', [
     'regex-check',
     'exec:blank-link-check',
-    'jshint',
+    'eslint',
   ]);
 
   grunt.registerTask(

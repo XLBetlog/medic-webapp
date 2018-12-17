@@ -1,0 +1,12 @@
+{
+  "env": {
+    "browser": false,
+    "jquery": false,
+    "jasmine": false
+  },
+  "rules": {
+    "eqeqeq": "off",
+    "new-cap": ["error", { "newIsCap": true }],
+    "no-console": "error"
+  }
+}
