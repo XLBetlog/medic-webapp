@@ -206,7 +206,7 @@ module.exports = function(grunt) {
     },
     eslint: {
       options: {
-        fix: true
+        fix: false
       },
       target: [
         'Gruntfile.js',
